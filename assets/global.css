@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* важно для верстки */
+}
+
+body {
+    background-color: #2a3141;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
