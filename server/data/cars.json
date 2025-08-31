@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "make": "Nissan",
+        "model": "Altima",
+        "year": 2016
+    },
+    {
+        "id": 2,
+        "make": "Toyota",
+        "model": "Highlander",
+        "year": 2019
+    },
+    {
+        "id": 3,
+        "make": "Nissan",
+        "model": "Murano",
+        "year": 2020
+    },
+    {
+        "id": 4,
+        "make": "Volkswagen",
+        "model": "Golf",
+        "year": 2022
+    },
+    {
+        "id": 5,
+        "make": "Honda",
+        "model": "Civic",
+        "year": 2022
+    },
+    {
+        "id": 6,
+        "make": "Honda",
+        "model": "Pilot",
+        "year": 2019
+    },
+    {
+        "id": 7,
+        "make": "Honda",
+        "model": "Accord",
+        "year": 2023
+    },
+    {
+        "id": 8,
+        "make": "Nissan",
+        "model": "Altima",
+        "year": 2015
+    },
+    {
+        "id": 9,
+        "make": "Audi",
+        "model": "A6",
+        "year": 2019
+    },
+    {
+        "id": 10,
+        "make": "Nissan",
+        "model": "Sentra",
+        "year": 2022
+    },
+    {
+        "id": 11,
+        "make": "Volkswagen",
+        "model": "Touareg",
+        "year": 2024
+    },
+    {
+        "id": 12,
+        "make": "Mercedes",
+        "model": "GLC",
+        "year": 2019
+    },
+    {
+        "id": 13,
+        "make": "Volkswagen",
+        "model": "Golf",
+        "year": 2015
+    },
+    {
+        "id": 14,
+        "make": "Honda",
+        "model": "Accord",
+        "year": 2020
+    },
+    {
+        "id": 15,
+        "make": "Hyundai",
+        "model": "Tucson",
+        "year": 2015
+    }
+]
