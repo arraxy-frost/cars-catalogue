@@ -4,14 +4,21 @@ export default defineNuxtConfig({
     ssr: true,                          // Enable Server Side Rendering
     devtools: { enabled: true },
     css: [
-        '@/assets/global.css'
+        "@/assets/global.css"
     ],
     app: {
         head: {
             title: "Cars Catalogue",
             link: [
-                { rel: 'icon', type: 'image/png', href: '/icon-car.png' },
+                { rel: "icon", type: "image/png", href: "/icon-car.png" }
             ]
         }
+    },
+    devServer: {
+        host: "0.0.0.0",
+        port: 3000
+    },
+    nitro: {
+        preset: "node-server"
     }
 });
