@@ -13,13 +13,17 @@ defineProps<{ car: Car }>();
 <style scoped>
 .car-list__item {
     cursor: pointer;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     transition: background-color 0.4s ease-in-out;
 }
 
 .car-list__item:hover {
-    background-color: #364152;
+    background-color: #fdf0da;
 }
 </style>
