@@ -5,6 +5,8 @@ export const useCarsStore = defineStore("cars", {
     state: () => ({
         carsList: [] as Car[],
         searchResult: [] as Car[],
+        searchQuery: "",
+        searchFilter: "make",
         carInfo: {},
         isLoading: false
     }),
@@ -33,6 +35,9 @@ export const useCarsStore = defineStore("cars", {
             }
         },
         searchCars(query: string, filter: "make" | "model") {
+            this.searchQuery = query;
+            this.searchFilter = filter;
+
             this.searchResult = this.carsList
                 .filter(car => car[filter]
                 .toLowerCase()

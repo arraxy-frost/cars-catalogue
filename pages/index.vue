@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useCarsStore } from "~/stores/cars";
 
-const filter = ref<string>('Model')
+const filter = ref<string>('')
 const searchString = ref<string>('')
 const router = useRouter();
 const carsStore = useCarsStore();
-await carsStore.loadCarsList()
 
 const onChangeFilter = () => {
     console.log(`Select filter: ${filter.value}`)
@@ -25,7 +24,9 @@ const onClickItem = async (id: number) => {
 }
 
 onMounted(async () => {
-    await onSearchInput();
+    await carsStore.loadCarsList()
+    searchString.value = carsStore.searchQuery ?? "";
+    filter.value = carsStore.searchFilter;
 })
 </script>
 <template>
@@ -35,8 +36,8 @@ onMounted(async () => {
                     v-model="filter"
                     @change="onChangeFilter"
             >
-                <option selected>Model</option>
-                <option>Make</option>
+                <option>make</option>
+                <option>model</option>
             </select>
             <input class="search-bar__input" type="text" v-model="searchString" @input="onSearchInput" />
         </div>
