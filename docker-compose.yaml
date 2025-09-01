@@ -1,0 +1,7 @@
+services:
+  cars-catalogue:
+    container_name: cars-catalogue
+    image: arraxy/cars-catalogue:latest
+    ports:
+      - "5005:3000"
+    restart: unless-stopped
