@@ -1,75 +1,33 @@
-# Nuxt Minimal Starter
+# 🚗 Cars Catalogue
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Приложение для отображения карточек автомобилей.  
+Проект написан на **Nuxt 4** с использованием **Bun** и упакован в Docker.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## ✨ Возможности
+- Просмотр карточек автомобилей
+- API-роуты (`/api/*`) для получения данных
+- Легкий запуск в контейнере
 
-```bash
-# npm
-npm install
+---
 
-# pnpm
-pnpm install
+## 🛠️ Запуск локально (через Bun)
 
-# yarn
-yarn install
+1. Установите зависимости:
+   ```bash
+   bun install
 
-# bun
-bun install
+2. Запустите сервер:
+    ```
+   bun run dev
+
+3. Откройте в браузере http://localhost:3000
+
+### Docker. 
+Для демонстрации можно запустить сервер через docker compose:
+```
+docker compose up -d
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Сервер будет доступен по порту, указанному в docker-compose. По умолчанию: http://localhost:5005
