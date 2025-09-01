@@ -8,6 +8,10 @@ const router = useRouter();
 const modelId = Number(route.query.model);
 const carsStore = useCarsStore();
 
+const onClickBack = async () => {
+    await router.push("/");
+}
+
 onMounted(async () => {
     // Упрощенная валидация. Лучше в будущем вынести в слой vue-router
     if (!modelId || isNaN(modelId)) {
@@ -55,6 +59,8 @@ onMounted(async () => {
                     <div class="car-param"><span class="label">Страна:</span> <span
                         class="value">{{ carsStore.carInfo.make_country }}</span></div>
                 </div>
+
+                <div class="btn-back" @click="onClickBack"><- Назад</div>
             </div>
             <div class="car-card__image">
                 Изображение машины
@@ -75,12 +81,6 @@ onMounted(async () => {
     border-radius: 16px;
     background-color: #ffffff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.12);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.car-card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.16);
-    transform: translateY(-2px);
 }
 
 .car-card__loader {
@@ -143,5 +143,18 @@ onMounted(async () => {
 
 .car-param .value {
     color: #616161;
+}
+
+.btn-back {
+    cursor: pointer;
+    padding: 16px;
+    background-color: #f5f5f5;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.16);
+    transform: translateY(-1px);
 }
 </style>
