@@ -5,5 +5,12 @@
   { "id": 82080, "make": "BMW", "model": "6 Series", "year": 2022 },
   { "id": 81662, "make": "Chevrolet", "model": "City Express", "year": 2022 },
   { "id": 83107, "make": "Chevrolet", "model": "Equinox", "year": 2022 },
-  { "id": 82258, "make": "Chevrolet", "model": "Impala", "year": 2022 }
+  { "id": 82258, "make": "Chevrolet", "model": "Impala", "year": 2022 },
+  { "id": 78228, "make": "Toyota", "model": "4Runner", "year": 2020 },
+  { "id": 78243, "make": "Toyota", "model": "Land Cruiser", "year": 2020 },
+  { "id": 78263, "make": "Toyota", "model": "Prius Plug-in", "year": 2020 },
+  { "id": 81471, "make": "Buick", "model": "Encore", "year": 2021 },
+  { "id": 79872, "make": "Cadillac", "model": "ATS Coupe", "year": 2021 },
+  { "id": 80066, "make": "Audi", "model": "Q5", "year": 2021 },
+  { "id": 69977, "make": "BMW", "model": "7 Series", "year": 2017 }
 ]
