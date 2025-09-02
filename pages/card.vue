@@ -10,7 +10,10 @@ const carsStore = useCarsStore();
 
 const onClickBack = async () => {
     await router.push("/");
-}
+};
+const getCarImageUrl = () => {
+    return `https://cdn.imagin.studio/getImage?customer=demo&make=${carsStore.carInfo.model_make_id}&model=${carsStore.carInfo.model_name}`;
+};
 
 onMounted(async () => {
     // Упрощенная валидация. Лучше в будущем вынести в слой vue-router
@@ -29,42 +32,80 @@ onMounted(async () => {
 
         <div v-else-if="carsStore.carInfo.model_id" class="car-card__content">
             <div class="car-card__info">
-                <div class="car-card__basic">
-                    <div class="car-param"><span class="label">Марка:</span> <span
-                        class="value">{{ carsStore.carInfo.model_make_id }}</span></div>
-                    <div class="car-param"><span class="label">Модель:</span> <span
-                        class="value">{{ carsStore.carInfo.model_name }}</span></div>
-                    <div class="car-param"><span class="label">Год:</span> <span
-                        class="value">{{ carsStore.carInfo.model_year }}</span></div>
+                <div class="car-card__info__description">
+                    <div class="car-card__basic">
+                        <div class="car-param"><span class="label">Марка:</span> <span
+                            class="value">{{ carsStore.carInfo.model_make_id }}</span></div>
+                        <div class="car-param"><span class="label">Модель:</span> <span
+                            class="value">{{ carsStore.carInfo.model_name }}</span></div>
+                        <div class="car-param"><span class="label">Год:</span> <span
+                            class="value">{{ carsStore.carInfo.model_year }}</span></div>
+                    </div>
+                    <div class="car-card__details">
+                        <div class="car-param">
+                            <span class="label">Тип кузова:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_body }}
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Двигатель:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_engine_type }}
+                                {{ carsStore.carInfo.model_engine_cyl }} cyl,
+                                {{ carsStore.carInfo.model_engine_cc }} cc
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Трансмиссия:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_transmission_type }}
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Привод:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_drive }}
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Вес:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_weight_kg }} кг
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Расход (смешанный):</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_lkm_mixed }} л/100км
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Объем бака:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_fuel_cap_l }} л
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">Двери:</span>
+                            <span class="value">
+                                {{ carsStore.carInfo.model_doors }}
+                            </span>
+                        </div>
+                        <div class="car-param">
+                            <span class="label">
+                                Страна:
+                            </span>
+                            <span class="value">{{ carsStore.carInfo.make_country }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="car-card__details">
-                    <div class="car-param"><span class="label">Тип кузова:</span> <span
-                        class="value">{{ carsStore.carInfo.model_body }}</span></div>
-                    <div class="car-param"><span class="label">Двигатель:</span> <span
-                        class="value">{{ carsStore.carInfo.model_engine_type }} {{ carsStore.carInfo.model_engine_cyl }} cyl, {{ carsStore.carInfo.model_engine_cc
-                        }} cc</span></div>
-                    <div class="car-param"><span class="label">Трансмиссия:</span> <span
-                        class="value">{{ carsStore.carInfo.model_transmission_type }}</span></div>
-                    <div class="car-param"><span class="label">Привод:</span> <span
-                        class="value">{{ carsStore.carInfo.model_drive }}</span></div>
-                    <div class="car-param"><span class="label">Вес:</span> <span
-                        class="value">{{ carsStore.carInfo.model_weight_kg }} кг</span></div>
-                    <div class="car-param"><span class="label">Расход (смешанный):</span> <span
-                        class="value">{{ carsStore.carInfo.model_lkm_mixed }} л/100км</span></div>
-                    <div class="car-param"><span class="label">Объем бака:</span> <span
-                        class="value">{{ carsStore.carInfo.model_fuel_cap_l }} л</span></div>
-                    <div class="car-param"><span class="label">Двери:</span> <span
-                        class="value">{{ carsStore.carInfo.model_doors }}</span></div>
-                    <div class="car-param"><span class="label">Страна:</span> <span
-                        class="value">{{ carsStore.carInfo.make_country }}</span></div>
+                <div class="car-card__image">
+                    <img style="width: 100%" :src="getCarImageUrl()" alt="Car image" />
                 </div>
-
-                <div class="btn-back" @click="onClickBack"><- Назад</div>
             </div>
-            <div class="car-card__image">
-                Изображение машины
-            </div>
+            <div class="btn-back" @click="onClickBack">Back to list</div>
         </div>
 
         <div v-else>
@@ -75,7 +116,7 @@ onMounted(async () => {
 
 <style scoped>
 .car-card {
-    max-width: 800px;
+    max-width: 900px;
     margin: 24px auto;
     padding: 24px;
     border-radius: 16px;
@@ -91,16 +132,16 @@ onMounted(async () => {
 
 .car-card__content {
     display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .car-card__image {
-    flex: 1 1 300px;
-    max-height: 250px;
+    display: flex;
+    width: 45%;
+    max-height: 200px;
     background-color: #f5f5f5;
     border-radius: 12px;
-    display: flex;
     align-items: center;
     justify-content: center;
     color: #9e9e9e;
@@ -112,13 +153,15 @@ onMounted(async () => {
 .car-card__info {
     flex: 2 1 400px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 16px;
 }
 
-.car-card__info > div {
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.car-card__info__description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 55%;
 }
 
 .car-card__basic, .car-card__details {
@@ -128,6 +171,7 @@ onMounted(async () => {
     background-color: #fafafa;
     padding: 16px;
     border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .car-param {
@@ -146,14 +190,20 @@ onMounted(async () => {
 }
 
 .btn-back {
+    display: flex;
     cursor: pointer;
+    justify-content: center;
+    font-weight: bold;
     padding: 16px;
+    box-sizing: border-box;
     background-color: #f5f5f5;
+    border-radius: 12px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.12);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.4s ease;
 }
 
 .btn-back:hover {
+    background-color: #fdf0da;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.16);
     transform: translateY(-1px);
 }
