@@ -25,13 +25,13 @@ const onClickItem = async (id: number) => {
 
 onMounted(async () => {
     await carsStore.loadCarsList()
-    searchString.value = carsStore.searchQuery ?? "";
+    searchString.value = carsStore.searchQuery ?? "make";
     filter.value = carsStore.searchFilter;
 })
 </script>
 <template>
     <div class="container">
-        <div class="search-bar">
+        <div class="search-bar" v-if="!carsStore.isLoading">
             <select class="search-bar__filter"
                     v-model="filter"
                     @change="onChangeFilter"
@@ -41,13 +41,18 @@ onMounted(async () => {
             </select>
             <input class="search-bar__input" type="text" v-model="searchString" @input="onSearchInput" />
         </div>
-        <CarListItem
-            v-if="carsStore.searchResult"
-            v-for="car in carsStore.searchResult"
-            :key="car.id"
-            :car="car"
-            @click="onClickItem(car.id)"
-        />
+        <div class="loader" v-else>
+            Загрузка списка автомобилей ...
+        </div>
+        <div class="car-list" v-if="carsStore.carsList">
+            <CarListItem
+                v-if="carsStore.searchResult"
+                v-for="car in carsStore.searchResult"
+                :key="car.id"
+                :car="car"
+                @click="onClickItem(car.id)"
+            />
+        </div>
     </div>
 </template>
 <style scoped>
@@ -79,5 +84,18 @@ onMounted(async () => {
 
 .search-bar__input {
     flex: 1;
+}
+
+.car-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.loader {
+    padding: 12px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 </style>

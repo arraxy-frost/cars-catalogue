@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Car } from "@/types/car";
+import type { Car, CarInfo } from "@/types/car";
 
 export const useCarsStore = defineStore("cars", {
     state: () => ({
@@ -7,8 +7,8 @@ export const useCarsStore = defineStore("cars", {
         searchResult: [] as Car[],
         searchQuery: "",
         searchFilter: "make",
-        carInfo: {},
-        isLoading: false
+        carInfo: null as CarInfo | null,
+        isLoading: true
     }),
     actions: {
         resetCarsList() {
@@ -27,7 +27,7 @@ export const useCarsStore = defineStore("cars", {
         async loadCarInfo(id: number) {
             try {
                 this.isLoading = true;
-                this.carInfo = await $fetch(`/api/cars/${id}`);
+                this.carInfo = await $fetch(`/api/cars/${id}`) as CarInfo;
             } catch (e) {
                 console.error("Error loading car info:", e);
             } finally {

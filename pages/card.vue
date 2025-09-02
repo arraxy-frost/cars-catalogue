@@ -12,7 +12,7 @@ const onClickBack = async () => {
     await router.push("/");
 };
 const getCarImageUrl = () => {
-    return `https://cdn.imagin.studio/getImage?customer=demo&make=${carsStore.carInfo.model_make_id}&model=${carsStore.carInfo.model_name}`;
+    return `https://cdn.imagin.studio/getImage?customer=demo&make=${carsStore.carInfo?.model_make_id}&model=${carsStore.carInfo?.model_name}`;
 };
 
 onMounted(async () => {
@@ -30,73 +30,73 @@ onMounted(async () => {
     <div class="car-card">
         <div v-if="carsStore.isLoading" class="car-card__loader">Загрузка...</div>
 
-        <div v-else-if="carsStore.carInfo.model_id" class="car-card__content">
+        <div v-else-if="carsStore.carInfo?.model_id" class="car-card__content">
             <div class="car-card__info">
                 <div class="car-card__info__description">
                     <div class="car-card__basic">
                         <div class="car-param"><span class="label">Марка:</span> <span
-                            class="value">{{ carsStore.carInfo.model_make_id }}</span></div>
+                            class="value">{{ carsStore.carInfo?.model_make_id }}</span></div>
                         <div class="car-param"><span class="label">Модель:</span> <span
-                            class="value">{{ carsStore.carInfo.model_name }}</span></div>
+                            class="value">{{ carsStore.carInfo?.model_name }}</span></div>
                         <div class="car-param"><span class="label">Год:</span> <span
-                            class="value">{{ carsStore.carInfo.model_year }}</span></div>
+                            class="value">{{ carsStore.carInfo?.model_year }}</span></div>
                     </div>
                     <div class="car-card__details">
                         <div class="car-param">
                             <span class="label">Тип кузова:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_body }}
+                                {{ carsStore.carInfo?.model_body }}
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Двигатель:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_engine_type }}
-                                {{ carsStore.carInfo.model_engine_cyl }} cyl,
-                                {{ carsStore.carInfo.model_engine_cc }} cc
+                                {{ carsStore.carInfo?.model_engine_type }}
+                                {{ carsStore.carInfo?.model_engine_cyl }} cyl,
+                                {{ carsStore.carInfo?.model_engine_cc }} cc
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Трансмиссия:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_transmission_type }}
+                                {{ carsStore.carInfo?.model_transmission_type }}
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Привод:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_drive }}
+                                {{ carsStore.carInfo?.model_drive }}
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Вес:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_weight_kg }} кг
+                                {{ carsStore.carInfo?.model_weight_kg }} кг
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Расход (смешанный):</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_lkm_mixed }} л/100км
+                                {{ carsStore.carInfo?.model_lkm_mixed }} л/100км
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Объем бака:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_fuel_cap_l }} л
+                                {{ carsStore.carInfo?.model_fuel_cap_l }} л
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">Двери:</span>
                             <span class="value">
-                                {{ carsStore.carInfo.model_doors }}
+                                {{ carsStore.carInfo?.model_doors }}
                             </span>
                         </div>
                         <div class="car-param">
                             <span class="label">
                                 Страна:
                             </span>
-                            <span class="value">{{ carsStore.carInfo.make_country }}
+                            <span class="value">{{ carsStore.carInfo?.make_country }}
                             </span>
                         </div>
                     </div>
