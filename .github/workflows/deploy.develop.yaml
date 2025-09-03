@@ -31,7 +31,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}//cars-catalogue
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue
 
       - name: Deploy on remote server
         uses: appleboy/ssh-action@v1.0.3
