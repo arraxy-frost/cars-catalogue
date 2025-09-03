@@ -31,7 +31,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue:develop
 
       - name: Deploy on remote server
         uses: appleboy/ssh-action@v1.0.3
@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
           script: |
-            docker stop cars-catalogue
-            docker rm cars-catalogue
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue
-            docker run -p 5005:3000 -d --name cars-catalogue arraxy/cars-catalogue
+            docker stop cars-catalogue || true
+            docker rm cars-catalogue || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue:develop
+            docker run -p 5005:3000 -d --name cars-catalogue ${{ secrets.DOCKERHUB_USERNAME }}/cars-catalogue:develop
