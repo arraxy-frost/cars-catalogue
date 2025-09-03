@@ -1,12 +1,14 @@
 import { defineStore } from "pinia";
-import type { Car, CarInfo } from "@/types/car";
+import type { Car } from "~/common/types/car";
+import type { CarFilter } from "~/common/enums/filter.enum";
+import type { CarInfo } from "~/common/types/car-info";
 
 export const useCarsStore = defineStore("cars", {
     state: () => ({
         carsList: [] as Car[],
         searchResult: [] as Car[],
         searchQuery: "",
-        searchFilter: "make",
+        searchFilter: "make" as CarFilter,
         carInfo: null as CarInfo | null,
         isLoading: true
     }),
@@ -34,7 +36,7 @@ export const useCarsStore = defineStore("cars", {
                 this.isLoading = false;
             }
         },
-        searchCars(query: string, filter: "make" | "model") {
+        searchCars(query: string, filter: CarFilter) {
             this.searchQuery = query;
             this.searchFilter = filter;
 

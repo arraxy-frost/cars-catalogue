@@ -1,10 +1,3 @@
-export interface Car {
-    id: number;
-    make: string;
-    model: string;
-    year: number;
-}
-
 export interface CarInfo {
     model_id: string;
     model_make_id: string;

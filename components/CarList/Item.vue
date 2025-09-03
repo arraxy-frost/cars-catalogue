@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Car } from '@/types/car'
+import type { Car } from '~/common/types/car'
 
 defineProps<{ car: Car }>();
 </script>

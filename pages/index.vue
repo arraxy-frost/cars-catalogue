@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useCarsStore } from "~/stores/cars";
+import { CarFilter } from "~/common/enums/filter.enum";
 
-const filter = ref<string>('')
+const filter = ref<CarFilter>(CarFilter.MAKE)
 const searchString = ref<string>('')
 const router = useRouter();
 const carsStore = useCarsStore();
@@ -17,7 +18,7 @@ const onSearchInput = async () => {
         return
     }
 
-    carsStore.searchCars(searchString.value, filter.value.toLowerCase());
+    carsStore.searchCars(searchString.value, filter.value);
 }
 const onClickItem = async (id: number) => {
     await router.push(`/card?model=${id}`);
@@ -31,6 +32,7 @@ onMounted(async () => {
 </script>
 <template>
     <div class="container">
+        <Transition>
         <div class="search-bar" v-if="!carsStore.isLoading">
             <select class="search-bar__filter"
                     v-model="filter"
@@ -41,9 +43,10 @@ onMounted(async () => {
             </select>
             <input class="search-bar__input" type="text" v-model="searchString" @input="onSearchInput" />
         </div>
-        <div class="loader" v-else>
-            Загрузка списка автомобилей ...
-        </div>
+            <div class="loader" v-else>
+                Загрузка списка автомобилей ...
+            </div>
+        </Transition>
         <div class="car-list" v-if="carsStore.carsList">
             <CarListItem
                 v-if="carsStore.searchResult"
@@ -97,5 +100,15 @@ onMounted(async () => {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 </style>
