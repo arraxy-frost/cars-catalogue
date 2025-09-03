@@ -2,11 +2,13 @@
 import { onMounted } from "vue";
 import { useCarsStore } from "~/stores/cars";
 import { useRoute, useRouter } from "vue-router";
+import { ImageLoadingStatus } from "~/common/enums/image-loading-status.enum";
 
 const route = useRoute();
 const router = useRouter();
 const modelId = Number(route.query.model);
 const carsStore = useCarsStore();
+const imageLoadingStatus = ref<ImageLoadingStatus>(ImageLoadingStatus.LOADING);
 
 const onClickBack = async () => {
     await router.push("/");
@@ -28,7 +30,9 @@ onMounted(async () => {
 
 <template>
     <div class="car-card">
-        <div v-if="carsStore.isLoading" class="car-card__loader">Загрузка...</div>
+        <div v-if="carsStore.isLoading" class="car-card__loader">
+            Загрузка...
+        </div>
 
         <div v-else-if="carsStore.carInfo?.model_id" class="car-card__content">
             <div class="car-card__info">
@@ -102,10 +106,24 @@ onMounted(async () => {
                     </div>
                 </div>
                 <div class="car-card__image">
-                    <img style="width: 100%" :src="getCarImageUrl()" alt="Car image" />
+                    <img v-show="imageLoadingStatus === ImageLoadingStatus.SUCCESS"
+                        style="width: 100%"
+                        :src="getCarImageUrl()"
+                        alt="Car image"
+                        @load="imageLoadingStatus = ImageLoadingStatus.SUCCESS"
+                        @error="imageLoadingStatus = ImageLoadingStatus.ERROR"
+                    />
+                    <span v-show="imageLoadingStatus === ImageLoadingStatus.LOADING">
+                        Загрузка изображения
+                    </span>
+                    <span v-show="imageLoadingStatus === ImageLoadingStatus.ERROR">
+                        Ошибка загрузки изображения
+                    </span>
                 </div>
             </div>
-            <div class="btn-back" @click="onClickBack">Back to list</div>
+            <div class="btn-back" @click="onClickBack">
+                Back to list
+            </div>
         </div>
 
         <div v-else>

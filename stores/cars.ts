@@ -17,6 +17,8 @@ export const useCarsStore = defineStore("cars", {
             this.searchResult = [];
         },
         async loadCarsList() {
+            console.log('Loading cars list')
+
             try {
                 this.isLoading = true;
                 this.carsList = await $fetch("api/cars");
@@ -27,6 +29,8 @@ export const useCarsStore = defineStore("cars", {
             }
         },
         async loadCarInfo(id: number) {
+            console.log('Loading cars info')
+
             try {
                 this.isLoading = true;
                 this.carInfo = await $fetch(`/api/cars/${id}`) as CarInfo;
@@ -37,6 +41,8 @@ export const useCarsStore = defineStore("cars", {
             }
         },
         searchCars(query: string, filter: CarFilter) {
+            console.log('Searching cars', query, filter);
+
             this.searchQuery = query;
             this.searchFilter = filter;
 
